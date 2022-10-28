@@ -89,9 +89,8 @@ This function uses both cardone and cardtwo that were drawn for the round as wel
 
 While there are cards in the player's deck, the code proceeds to the following if statements: 
 
-- if valueone > valuetwo: 
--- add the two cards to the computers card deck 
-- if the opposite is true, add the cards to the player's deck 
+- if valueone > valuetwo: add the two cards to the computers card deck 
+- if the opposite is true: add the cards to the player's deck 
 - if the values are equivalent then the function war_game is called 
 
 
