@@ -2,7 +2,7 @@
 
 These are just a couple examples of some simple python projects that I have created in the past. 
 
-##Avatar Random Quiz Game 
+## Avatar Random Quiz Game 
 
 This is a 15-question quiz game that quizzes the user on fun facts from the popular show: Avatar-The Last Airbenders. The questions are generated in random order using the random module: 
 
@@ -12,7 +12,7 @@ import random
 ```
 Two of the main concepts in this game (Lists and the Random module) are highlighted below 
 
-###Use of Lists 
+### Use of Lists 
 
 A total of three lists are used in the game: a question bank list, an answer key list, and a corresponding answer choices list. The answer choices list is a nested list that contains multiple choice options for the user to pick through. 
 
@@ -28,7 +28,7 @@ Answer_key = ["B","B"]
 ```
 The most important characteristic of the lists is that the answer choices, questions, and key correspond with each other because of the order that they are in. For the above code, the first question (referenced as Questions_list[0]) corresponds to the first nested list in the Answer_choices list and the first item in the Answer_key list. 
 
-###Use of Random module 
+### Use of Random module 
 
 A random list of non-repeating integers is created using the function: 
 
