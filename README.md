@@ -43,14 +43,94 @@ A for loop is used to traverse through the random list and use the random list v
 Finally, at the end of the game, the player's score is printed. 
 
 
-## Avatar Random Quiz Game 
+## War Card Game
 
-The second python game is based on the card game War. There are a couple of rules in this game: 
+The second python game is based on the card game War. There are a couple of main rules in this game: 
+
+- The deck is split between the computer and the player 
+- The first card from each deck is drawn and the card values are compared 
+- If the player's card is greater than the computer's card, both cards are added to the deck of the winner 
+- If both of the cards are the same value, the fourth card is drawn and the values are compared similarly to above 
+- The winner of the draw gains the four cards from the loser's deck 
+- The game ends when the player has no more cards in their player deck 
+
+The main concept in this game is the calling of functions
+
+### Use of Functions 
+
+There are a total of four functions used in this program. 
+
+The first one is determinevalue(firstchar) shown below: 
+
+```
+def determinevalue(firstchar):
+  if firstchar == "K":
+    value= 13
+  elif firstchar == "Q":
+    value= 12
+  elif firstchar == "J":
+    value= 11
+  elif firstchar == "A":
+    value = 1
+  else: value = int(str(firstchar))
+  return value
+```
+
+The determine value function is used to find the numerical value of the string card. For example, if given the card: '5♥', the parameter for the determinevalue funcion would be 5 (indiciating the first character of the card). Then, a series of if statements determine the numerical value of the card in case the first character is a face card. 
+
+The second function is called checkwinner: 
+
+```
+checkwinner(cardone, cardtwo, valueone, valuetwo) 
+
+```
+
+This function uses both cardone and cardtwo that were drawn for the round as well as the numerical values of the cards (valueone and valuetwo). 
+
+While there are cards in the player's deck, the code proceeds to the following if statements: 
+
+- if valueone > valuetwo: 
+-- add the two cards to the computers card deck 
+- if the opposite is true, add the cards to the player's deck 
+- if the values are equivalent then the function war_game is called 
 
 
+if the while loop is false, then the game ends since the player has no more cards to play with. 
+
+The third function is called war_game() and is only called when the card drawn in the round are numerically equivalent. This function uses both the computer's deck and the player's deck as parameters. 
+
+```
+war_game(compdeck, playerdeck) 
+
+```
+This function isolates the the first character of the fourth card of both decks and calls the determinevalue function to fnd the numerical value of the first characters. If the computer's card has a higher value, the first four cards of the player's deck are added to the computer's deck. The vice versa is true. 
 
 
+The fourth and final function calls all of the three previous functions into one: 
 
+drawcards(list_a, list_b) 
 
+```
+def drawcards(list_a, list_b):
+  
+ 
+  cardone = random.choice(list_a)
+  cardtwo = random.choice(list_b)
 
+  print("This is computer's card:", cardone+ "\n"+ "This is your card:", cardtwo)
+ 
+ #isolates the value of the card 
 
+  firstcharone = cardone[:-1] 
+  firstchartwo = cardtwo[:-1]
+  
+ #calculates the integer value of the card 
+
+  valueone = determinevalue(firstcharone)
+  valuetwo = determinevalue(firstchartwo) 
+  
+
+  checkwinner(cardone, cardtwo, valueone, valuetwo)
+  
+ ```
+The function uses list_a and list_b as parameters and calls random values from the deck. It then isolates the first character of the string in the list (deck of cards) and feed them through the determinevalue() functions. The return values from determinevalue functions are stored as values and used as parameters for the checkwinner function. 
