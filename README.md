@@ -43,6 +43,9 @@ A for loop is used to traverse through the random list and use the random list v
 Finally, at the end of the game, the player's score is printed. 
 
 
+## Avatar Random Quiz Game 
+
+The second python game is based on the card game War. There are a couple of rules in this game: 
 
 
 
