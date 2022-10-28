@@ -1,0 +1,124 @@
+#Importing Specific Modules 
+import random  
+from random import shuffle
+from random import randint
+
+#Instructions for how to play the game 
+print("Welcome to the card game War!" + "\n" + "Here are the instructions for the game:")
+
+print("A full deck of cards is used to play (displayed below). The deck is evenly split (randomly) between you and the computer. Everytime you type in 'draw', the computer will draw a card from your deck and compare it to the card drawn from the computer's deck. If your card's value is higher than the computer's, then you win and vice versa. For face cards, the following values correspond to each:"+"\n"+"Ace = 1"+"\n"+"Jack = 11"+"\n"+"Queen = 12"+"\n"+"King = 13"+"\n"+"If you would like to shuffle your deck and then draw, type 'shuffle'. If there is a draw, then 3 cards will be drawn from each deck, and the fourth card in each deck will be flipped against each other. The winner receives all 6 of the previous cards plus the two cards flipped over. ")
+
+fulldeck = ['2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♥', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦', 'A♦', '2♣️', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♣', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠', 'A♠']
+
+
+shuffle(fulldeck)
+
+
+def drawcards(list_a, list_b):
+  
+ 
+  cardone = random.choice(list_a)
+  cardtwo = random.choice(list_b)
+
+  print("This is computer's card:", cardone+ "\n"+ 
+ "This is your card:", cardtwo)
+
+  firstcharone = cardone[:-1]
+  firstchartwo = cardtwo[:-1]
+
+  valueone = determinevalue(firstcharone)
+  valuetwo = determinevalue(firstchartwo) 
+
+  checkwinner(cardone, cardtwo, valueone, valuetwo)
+
+    
+
+  
+def determinevalue(firstchar):
+  if firstchar == "K":
+    value= 13
+  elif firstchar == "Q":
+    value= 12
+  elif firstchar == "J":
+    value= 11
+  elif firstchar == "A":
+    value = 1
+  else: value = int(str(firstchar))
+  return value
+
+def checkwinner(cardone, cardtwo, valueone, valuetwo):
+  while(playerdeck != 0):
+    if valueone > valuetwo:
+      compdeck.append(cardone)
+      compdeck.append(cardtwo)
+      print ("Computer won!")
+      playerdeck.remove(cardtwo)
+    elif valueone == valuetwo:
+      print("It's WAR!")
+      war_game(compdeck, playerdeck)
+    else:
+      print("You won!")
+      playerdeck.append(cardone)
+      playerdeck.append(cardtwo)
+      compdeck.remove(cardone)
+    
+    command = input("What is your next move?")
+ 
+    if command == "draw": 
+      drawcards(compdeck, playerdeck)
+    elif command == "shuffle": 
+      print("Your deck has been shuffled!")
+      shuffle(playerdeck) 
+      drawcards(compdeck, playerdeck)
+    else: 
+     print("Please enter a command: draw or shuffle")
+    
+     print("")
+  else:
+   print("Game Over! You no longer have any more cards remaining!")
+      
+    
+
+def war_game(deckone, decktwo):
+  fourthcharone = deckone[3][:-1]
+  fourthchartwo = decktwo[3][:-1]
+
+  print("This is computer's fourth card:", deckone[3]+ "\n"+ 
+ "This is your fourth card:", decktwo[3])
+  
+  fourthcharonevalue = determinevalue(fourthcharone)
+  fourthchartwovalue = determinevalue(fourthchartwo)
+  
+
+  if fourthcharonevalue > fourthchartwovalue:
+    print("Computer Wins! All 8 cards have been added to the computer's deck")
+    winner_list = decktwo[:5]
+    deckone.extend(winner_list)
+   
+  elif fourthcharonevalue == fourthchartwovalue:
+    print("It's a Draw! Both of you can keep your cards.")
+  else:
+    print("You Win! All 8 cards have been added to your deck")
+    winner_list = deckone[:5]
+    decktwo.extend(winner_list)
+    
+        
+fulldeck = ['2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♥', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦', 'A♦', '2♣️', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♣', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠', 'A♠']
+  
+
+print("This is the full deck of cards:"+"\n", fulldeck)
+print("The deck will now be split evenly and randomly between you and the computer")
+print("")
+  
+playerdeck = random.sample(fulldeck, 26)
+print("This is your deck:"+"\n", playerdeck)
+
+for i in playerdeck: 
+  fulldeck.remove(i)
+  compdeck = fulldeck 
+
+
+drawcards(compdeck, playerdeck)
+
+  
+
