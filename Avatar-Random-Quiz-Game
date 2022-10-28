@@ -1,0 +1,50 @@
+#Imports random module into code 
+import random 
+
+#Creates Function called play_game
+def play_game():
+
+  #Question Bank in a list 
+  Questions_list = ["Who is Katara's brother?" ,'Which nation does Aang belong to?', 'Which nation does Katara belong to?', 'Which nation does Suki belong to?', 'Which nation does Sokka belong to?', 'Which nation does Zuko belong to?', "Who is Zuko's sister?","Which water tribe do Katara and Sokka belong to?", "Who is the firelord?", "Which nation does Toph belong to?", "What is the name of Zuko's mother", "Did Katara marry Aang?", "After how many years did Aang wake up from his icy slumber when Katara and Sokka first stumbled upon him in the iceberg?", "Who is Zuko's uncle?", "True or False? Suki is a Kyoshi Warrior."]
+
+  
+  Answer_Key = ["B", 'B', "C", "A", "C", "B", "B", "A", "A", "B", "A", "A", "B", "C", "B"]
+
+  #Nested List with multiple choice answers for the above questions
+  Answer_Choices = [['A. Aang', 'B. Sokka', 'C. Momo'],['A. Fire Nation', 'B. Air Nation', 'C. Water Nation'], ['A. Earth Nation', 'B. Fire Nation', 'C. Water Nation'],['A. Earth Nation', 'B. Fire Nation', 'C. Water Nation'], ['A. Fire Nation', 'B. Air Nation', 'C. Water Nation'], ['A. Air Nation', 'B. Fire Nation', 'C. Water Nation'], ['A. Katara', 'B. Azula', 'C. Toph'], ['A. Southern Water Tribe', 'B. Northern Water Tribe', 'C. Fire Water Tribe'], ['A. Firelord Ozai', 'B. Firelord Iroh', 'C. Firelord Zuko'], ['A. Fire Nation', 'B. Earth Nation', 'C. Water Nation'], ['A. Ursa', 'B. Katara', 'C. Mai'], ['A. Yes', 'B. No', 'C. Divorced'], ['A. 50', 'B. 100', 'C. 25'], ['A. Uncle Ozai', 'B. Uncle Aang', 'C. Uncle Iroh'], ['A. False', 'B. True', 'C. False AND True']]
+
+  score = 0 #Initializing variable that keeps track of player's score 
+
+   #random list from 0-14 is generated; the numbers correspond to the questions in the question bank list
+   randomlist = random.sample(range(15), 15)  
+
+   #Introductory statement for quiz 
+  print("Welcome to the Avatar:Last Airbender Quiz! Here is your first question: ")
+  print ()
+  
+  #for loop transverses through the list of random numbers (randomlist)   
+  for num in randomlist:
+     #The current value (num) is used to call the corresponding item number for the Questions_list, Answer_Choices list, and Answer_Key List
+    print(Questions_list[num]) #prints corresponding question to the current item value of num in the Q_list
+    print("These are your answer choices:") 
+    for answers in Answer_Choices[num]: #for loop transverses through the answer choices in the nested list in the corresponding Answer_Choices list's num item 
+      print(answers, end=" ") #Prints the answer choices 
+      print("") #used for output formatting 
+
+    guess = input("Insert Answer: ") #player's input is stored as string variable called "guess"
+ 
+     #if player's answer is equal to corresponding answerkey item for the current (num) question then add 1 to score and print "You are correct"
+    if guess == Answer_Key[num]:
+      score += 1  
+      print("You are Correct!")
+      print(" ")
+    #else if player's answer is not equal to current (num) answer_key value then state player's guess is incorrect and print correct answer 
+    else: 
+      print("Incorrect. The Correct Answer is:", Answer_Key[num])
+      print(" ")
+  #Prints player's final score at the end of game 
+  print("Your final score is:", score)
+
+#Calls Play_game function    
+play_game()
+
