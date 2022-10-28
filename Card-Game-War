@@ -13,7 +13,7 @@ fulldeck = ['2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10�
 
 shuffle(fulldeck)
 
-# Creates a dunction that stores the values of the cards drawn 
+# Creates a function that stores the values of the cards drawn 
 def drawcards(list_a, list_b):
   
  
