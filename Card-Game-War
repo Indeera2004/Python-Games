@@ -13,7 +13,7 @@ fulldeck = ['2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10�
 
 shuffle(fulldeck)
 
-
+# Creates a dunction that stores the values of the cards drawn 
 def drawcards(list_a, list_b):
   
  
@@ -22,16 +22,20 @@ def drawcards(list_a, list_b):
 
   print("This is computer's card:", cardone+ "\n"+ 
  "This is your card:", cardtwo)
+ 
+ #isolates the value of the card 
 
-  firstcharone = cardone[:-1]
+  firstcharone = cardone[:-1] 
   firstchartwo = cardtwo[:-1]
+  
+ #calculates the integer value of the card 
 
   valueone = determinevalue(firstcharone)
   valuetwo = determinevalue(firstchartwo) 
+  
+  #calls the checkwinner function 
 
   checkwinner(cardone, cardtwo, valueone, valuetwo)
-
-    
 
   
 def determinevalue(firstchar):
@@ -47,7 +51,10 @@ def determinevalue(firstchar):
   return value
 
 def checkwinner(cardone, cardtwo, valueone, valuetwo):
+ #loop continues only if the player deck is not equal to 0 
   while(playerdeck != 0):
+  
+  #adds both of the cards to the appropriate decks and removes the card from the loser's deck 
     if valueone > valuetwo:
       compdeck.append(cardone)
       compdeck.append(cardtwo)
@@ -55,7 +62,7 @@ def checkwinner(cardone, cardtwo, valueone, valuetwo):
       playerdeck.remove(cardtwo)
     elif valueone == valuetwo:
       print("It's WAR!")
-      war_game(compdeck, playerdeck)
+      war_game(compdeck, playerdeck) #calls the function war game 
     else:
       print("You won!")
       playerdeck.append(cardone)
@@ -74,35 +81,36 @@ def checkwinner(cardone, cardtwo, valueone, valuetwo):
      print("Please enter a command: draw or shuffle")
     
      print("")
+  #exits the while loop and ends the game 
   else:
    print("Game Over! You no longer have any more cards remaining!")
       
     
-
+#is called if the player and the computer draw the same card 
 def war_game(deckone, decktwo):
-  fourthcharone = deckone[3][:-1]
+  fourthcharone = deckone[3][:-1] #finds the first character of the fourth card in the deck 
   fourthchartwo = decktwo[3][:-1]
 
   print("This is computer's fourth card:", deckone[3]+ "\n"+ 
  "This is your fourth card:", decktwo[3])
   
-  fourthcharonevalue = determinevalue(fourthcharone)
+  fourthcharonevalue = determinevalue(fourthcharone) #determines the value of the first character of the fourth card in the deck 
   fourthchartwovalue = determinevalue(fourthchartwo)
   
 
   if fourthcharonevalue > fourthchartwovalue:
-    print("Computer Wins! All 8 cards have been added to the computer's deck")
-    winner_list = decktwo[:5]
+    print("Computer Wins! All 8 cards have been added to the computer's deck") 
+    winner_list = decktwo[:5] #draws the first four cards of deck two and adds them to deck one 
     deckone.extend(winner_list)
    
   elif fourthcharonevalue == fourthchartwovalue:
     print("It's a Draw! Both of you can keep your cards.")
   else:
     print("You Win! All 8 cards have been added to your deck")
-    winner_list = deckone[:5]
+    winner_list = deckone[:5] #draws the first four cards of deck one and adds them to deck two 
     decktwo.extend(winner_list)
     
-        
+ 
 fulldeck = ['2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♥', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦', 'A♦', '2♣️', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♣', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠', 'A♠']
   
 
@@ -110,15 +118,15 @@ print("This is the full deck of cards:"+"\n", fulldeck)
 print("The deck will now be split evenly and randomly between you and the computer")
 print("")
   
-playerdeck = random.sample(fulldeck, 26)
+playerdeck = random.sample(fulldeck, 26) #random sample picks 26 non-repeating cards from the full deck and assigns them to the player's deck 
 print("This is your deck:"+"\n", playerdeck)
 
-for i in playerdeck: 
+for i in playerdeck:  #creates the computer's deck by removing the player deck's cards from the original deck 
   fulldeck.remove(i)
   compdeck = fulldeck 
 
 
-drawcards(compdeck, playerdeck)
+drawcards(compdeck, playerdeck) #calls the game 
 
   
 
